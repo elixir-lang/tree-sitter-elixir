@@ -66,7 +66,7 @@
 
 (call
   target: (dot
-            left: (atom) @type))
+    left: (atom) @type))
 
 (char) @constant
 
