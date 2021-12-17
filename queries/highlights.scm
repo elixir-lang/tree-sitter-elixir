@@ -2,6 +2,29 @@
 
 ["when" "and" "or" "not" "in" "not in" "fn" "do" "end" "catch" "rescue" "after" "else"] @keyword
 
+; * the reserved words are not valid identifiers, but if the code
+;   is invalid and we find those, we also highlight them as keywords,
+;   for example in IEx snippets
+(
+  (identifier) @keyword
+  (#match? @keyword "^(when|and|or|not|in|not in|fn|do|end|catch|rescue|after|else)$")
+)
+
+; IEx prefix
+
+(binary_operator
+  left: [
+    (identifier) @comment.iex.__identifier__
+    (call
+      target: (identifier) @comment.iex.__identifier__
+      (arguments
+        "(" @comment.iex
+        (integer) @comment.iex
+        ")" @comment.iex))
+  ]
+  operator: ">" @comment.iex
+  (#match? @comment.iex.__identifier__ "^(iex|\.\.\.)$"))
+
 ; Operators
 
 ; * doc string
