@@ -63,4 +63,4 @@
   right: (identifier) @name) @reference.call
 
 ; * modules
-(alias) @name @reference.call
+(alias) @name @reference.module
