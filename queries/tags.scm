@@ -12,12 +12,6 @@
   (arguments (alias) @name)
   (#eq? @ignore "defprotocol")) @definition.interface
 
-; * implementations for protocols
-(call
-  target: (identifier) @ignore
-  (arguments (alias) @name)
-  (#eq? @ignore "defimpl")) @definition.implementation
-
 ; * functions/macros
 (call
   target: (identifier) @ignore
@@ -35,6 +29,12 @@
   (#match? @ignore "^(def|defp|defdelegate|defguard|defguardp|defmacro|defmacrop|defn|defnp)$")) @definition.function
 
 ; References
+
+; * implementations for protocols point to the defprotocol module
+(call
+  target: (identifier) @ignore
+  (arguments (alias) @name)
+  (#eq? @ignore "defimpl")) @reference.interface
 
 ; ignore calls to kernel/special-forms keywords
 (call
