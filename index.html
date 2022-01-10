@@ -56,11 +56,38 @@
         <div id="input-pane">
           <div id="code-container">
             <textarea id="code-input" style="display: none">
-</textarea>
+IO.puts "Hello, tree-sitter!"</textarea>
           </div>
           <div id="query-container" style="">
             <textarea id="query-input" style="display: none">
-</textarea>
+["when" "and" "or" "not" "in" "not in" "fn" "do" "end" "catch" "rescue" "after" "else"] @keyword
+
+[
+  (boolean)
+  (nil)
+] @constant
+
+[
+  (integer)
+  (float)
+] @number
+
+(alias) @module
+(char) @constant
+
+[
+  (atom)
+  (quoted_atom)
+  (keyword)
+  (quoted_keyword)
+] @string.special.symbol
+
+[
+  (string)
+  (charlist)
+] @string
+
+(comment) @comment</textarea>
           </div>
         </div>
 
