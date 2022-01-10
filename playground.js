@@ -39,12 +39,14 @@ let tree;
   const parser = new TreeSitter();
   const codeEditor = CodeMirror.fromTextArea(codeInput, {
     lineNumbers: true,
-    showCursorWhenSelecting: true
+    showCursorWhenSelecting: true,
+    tabSize: 2
   });
 
   const queryEditor = CodeMirror.fromTextArea(queryInput, {
     lineNumbers: true,
-    showCursorWhenSelecting: true
+    showCursorWhenSelecting: true,
+    tabSize: 2
   });
 
   const cluster = new Clusterize({
