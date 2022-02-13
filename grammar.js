@@ -213,6 +213,7 @@ module.exports = grammar({
         $.tuple,
         $.bitstring,
         $.map,
+        $.nullary_operator,
         $.unary_operator,
         $.binary_operator,
         $.dot,
@@ -426,6 +427,8 @@ module.exports = grammar({
         )
       ),
 
+    nullary_operator: ($) => "..",
+
     unary_operator: ($) =>
       choice(
         unaryOp($, prec, PREC.CAPTURE_OP, "&", $._capture_expression),
@@ -523,7 +526,7 @@ module.exports = grammar({
         "in",
         alias($._not_in, "not in"),
         "^^",
-        ...CONCAT_OPS,
+        prec(PREC.CONCAT_OPS, choice(...CONCAT_OPS)),
         ...MULT_OPS,
         "**",
         "->",

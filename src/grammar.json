@@ -169,6 +169,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "nullary_operator"
+        },
+        {
+          "type": "SYMBOL",
           "name": "unary_operator"
         },
         {
@@ -2784,6 +2788,10 @@
         }
       ]
     },
+    "nullary_operator": {
+      "type": "STRING",
+      "value": ".."
+    },
     "unary_operator": {
       "type": "CHOICE",
       "members": [
@@ -4015,28 +4023,37 @@
           "value": "^^"
         },
         {
-          "type": "STRING",
-          "value": "++"
-        },
-        {
-          "type": "STRING",
-          "value": "--"
-        },
-        {
-          "type": "STRING",
-          "value": "+++"
-        },
-        {
-          "type": "STRING",
-          "value": "---"
-        },
-        {
-          "type": "STRING",
-          "value": ".."
-        },
-        {
-          "type": "STRING",
-          "value": "<>"
+          "type": "PREC",
+          "value": 160,
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "STRING",
+                "value": "++"
+              },
+              {
+                "type": "STRING",
+                "value": "--"
+              },
+              {
+                "type": "STRING",
+                "value": "+++"
+              },
+              {
+                "type": "STRING",
+                "value": "---"
+              },
+              {
+                "type": "STRING",
+                "value": ".."
+              },
+              {
+                "type": "STRING",
+                "value": "<>"
+              }
+            ]
+          }
         },
         {
           "type": "STRING",

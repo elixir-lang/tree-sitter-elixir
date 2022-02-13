@@ -657,6 +657,31 @@ x +y +z
               (identifier))))))))
 
 =====================================
+nullary range
+=====================================
+
+..
+Enum.to_list(..)
+not ..
+range = ..
+
+---
+
+(source
+  (nullary_operator)
+  (call
+    (dot
+      (alias)
+      (identifier))
+    (arguments
+      (nullary_operator)))
+  (unary_operator
+    (nullary_operator))
+  (binary_operator
+    (identifier)
+    (nullary_operator)))
+
+=====================================
 stepped range
 =====================================
 

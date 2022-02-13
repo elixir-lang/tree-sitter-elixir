@@ -38,6 +38,8 @@
 
 (operator_identifier) @operator
 
+(nullary_operator) @operator
+
 (unary_operator
   operator: _ @operator)
 

@@ -80,6 +80,10 @@
             "named": true
           },
           {
+            "type": "nullary_operator",
+            "named": true
+          },
+          {
             "type": "quoted_atom",
             "named": true
           },
@@ -175,6 +179,10 @@
           },
           {
             "type": "nil",
+            "named": true
+          },
+          {
+            "type": "nullary_operator",
             "named": true
           },
           {
@@ -279,6 +287,10 @@
         },
         {
           "type": "nil",
+          "named": true
+        },
+        {
+          "type": "nullary_operator",
           "named": true
         },
         {
@@ -408,6 +420,10 @@
           "named": true
         },
         {
+          "type": "nullary_operator",
+          "named": true
+        },
+        {
           "type": "quoted_atom",
           "named": true
         },
@@ -512,6 +528,10 @@
           },
           {
             "type": "nil",
+            "named": true
+          },
+          {
+            "type": "nullary_operator",
             "named": true
           },
           {
@@ -811,6 +831,10 @@
             "named": true
           },
           {
+            "type": "nullary_operator",
+            "named": true
+          },
+          {
             "type": "quoted_atom",
             "named": true
           },
@@ -919,6 +943,10 @@
           "named": true
         },
         {
+          "type": "nullary_operator",
+          "named": true
+        },
+        {
           "type": "quoted_atom",
           "named": true
         },
@@ -1019,6 +1047,10 @@
         },
         {
           "type": "nil",
+          "named": true
+        },
+        {
+          "type": "nullary_operator",
           "named": true
         },
         {
@@ -1126,6 +1158,10 @@
         },
         {
           "type": "nil",
+          "named": true
+        },
+        {
+          "type": "nullary_operator",
           "named": true
         },
         {
@@ -1272,6 +1308,10 @@
         },
         {
           "type": "nil",
+          "named": true
+        },
+        {
+          "type": "nullary_operator",
           "named": true
         },
         {
@@ -1446,6 +1486,10 @@
           "named": true
         },
         {
+          "type": "nullary_operator",
+          "named": true
+        },
+        {
           "type": "quoted_atom",
           "named": true
         },
@@ -1554,6 +1598,10 @@
           },
           {
             "type": "nil",
+            "named": true
+          },
+          {
+            "type": "nullary_operator",
             "named": true
           },
           {
@@ -1701,6 +1749,10 @@
           "named": true
         },
         {
+          "type": "nullary_operator",
+          "named": true
+        },
+        {
           "type": "quoted_atom",
           "named": true
         },
@@ -1810,6 +1862,10 @@
         },
         {
           "type": "nil",
+          "named": true
+        },
+        {
+          "type": "nullary_operator",
           "named": true
         },
         {
@@ -1932,6 +1988,10 @@
         },
         {
           "type": "nil",
+          "named": true
+        },
+        {
+          "type": "nullary_operator",
           "named": true
         },
         {
@@ -2061,6 +2121,10 @@
           "named": true
         },
         {
+          "type": "nullary_operator",
+          "named": true
+        },
+        {
           "type": "quoted_atom",
           "named": true
         },
@@ -2085,6 +2149,11 @@
   },
   {
     "type": "nil",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "nullary_operator",
     "named": true,
     "fields": {}
   },
@@ -2185,6 +2254,10 @@
           },
           {
             "type": "nil",
+            "named": true
+          },
+          {
+            "type": "nullary_operator",
             "named": true
           },
           {
@@ -2393,6 +2466,10 @@
         },
         {
           "type": "nil",
+          "named": true
+        },
+        {
+          "type": "nullary_operator",
           "named": true
         },
         {
@@ -2624,6 +2701,10 @@
         },
         {
           "type": "nil",
+          "named": true
+        },
+        {
+          "type": "nullary_operator",
           "named": true
         },
         {
@@ -2865,6 +2946,10 @@
           "named": true
         },
         {
+          "type": "nullary_operator",
+          "named": true
+        },
+        {
           "type": "quoted_atom",
           "named": true
         },
@@ -2973,6 +3058,10 @@
           },
           {
             "type": "nil",
+            "named": true
+          },
+          {
+            "type": "nullary_operator",
             "named": true
           },
           {
