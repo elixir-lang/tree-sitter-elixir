@@ -168,15 +168,6 @@
           "name": "map"
         },
         {
-          "type": "ALIAS",
-          "content": {
-            "type": "STRING",
-            "value": ".."
-          },
-          "named": true,
-          "value": "operator_identifier"
-        },
-        {
           "type": "SYMBOL",
           "name": "unary_operator"
         },
@@ -4024,37 +4015,28 @@
           "value": "^^"
         },
         {
-          "type": "PREC",
-          "value": 160,
-          "content": {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "STRING",
-                "value": "++"
-              },
-              {
-                "type": "STRING",
-                "value": "--"
-              },
-              {
-                "type": "STRING",
-                "value": "+++"
-              },
-              {
-                "type": "STRING",
-                "value": "---"
-              },
-              {
-                "type": "STRING",
-                "value": ".."
-              },
-              {
-                "type": "STRING",
-                "value": "<>"
-              }
-            ]
-          }
+          "type": "STRING",
+          "value": "++"
+        },
+        {
+          "type": "STRING",
+          "value": "--"
+        },
+        {
+          "type": "STRING",
+          "value": "+++"
+        },
+        {
+          "type": "STRING",
+          "value": "---"
+        },
+        {
+          "type": "STRING",
+          "value": ".."
+        },
+        {
+          "type": "STRING",
+          "value": "<>"
         },
         {
           "type": "STRING",

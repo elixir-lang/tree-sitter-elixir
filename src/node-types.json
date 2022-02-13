@@ -80,10 +80,6 @@
             "named": true
           },
           {
-            "type": "operator_identifier",
-            "named": true
-          },
-          {
             "type": "quoted_atom",
             "named": true
           },
@@ -179,10 +175,6 @@
           },
           {
             "type": "nil",
-            "named": true
-          },
-          {
-            "type": "operator_identifier",
             "named": true
           },
           {
@@ -287,10 +279,6 @@
         },
         {
           "type": "nil",
-          "named": true
-        },
-        {
-          "type": "operator_identifier",
           "named": true
         },
         {
@@ -417,10 +405,6 @@
         },
         {
           "type": "nil",
-          "named": true
-        },
-        {
-          "type": "operator_identifier",
           "named": true
         },
         {
@@ -827,10 +811,6 @@
             "named": true
           },
           {
-            "type": "operator_identifier",
-            "named": true
-          },
-          {
             "type": "quoted_atom",
             "named": true
           },
@@ -939,10 +919,6 @@
           "named": true
         },
         {
-          "type": "operator_identifier",
-          "named": true
-        },
-        {
           "type": "quoted_atom",
           "named": true
         },
@@ -1043,10 +1019,6 @@
         },
         {
           "type": "nil",
-          "named": true
-        },
-        {
-          "type": "operator_identifier",
           "named": true
         },
         {
@@ -1154,10 +1126,6 @@
         },
         {
           "type": "nil",
-          "named": true
-        },
-        {
-          "type": "operator_identifier",
           "named": true
         },
         {
@@ -1304,10 +1272,6 @@
         },
         {
           "type": "nil",
-          "named": true
-        },
-        {
-          "type": "operator_identifier",
           "named": true
         },
         {
@@ -1482,10 +1446,6 @@
           "named": true
         },
         {
-          "type": "operator_identifier",
-          "named": true
-        },
-        {
           "type": "quoted_atom",
           "named": true
         },
@@ -1594,10 +1554,6 @@
           },
           {
             "type": "nil",
-            "named": true
-          },
-          {
-            "type": "operator_identifier",
             "named": true
           },
           {
@@ -1745,10 +1701,6 @@
           "named": true
         },
         {
-          "type": "operator_identifier",
-          "named": true
-        },
-        {
           "type": "quoted_atom",
           "named": true
         },
@@ -1858,10 +1810,6 @@
         },
         {
           "type": "nil",
-          "named": true
-        },
-        {
-          "type": "operator_identifier",
           "named": true
         },
         {
@@ -1984,10 +1932,6 @@
         },
         {
           "type": "nil",
-          "named": true
-        },
-        {
-          "type": "operator_identifier",
           "named": true
         },
         {
@@ -2117,10 +2061,6 @@
           "named": true
         },
         {
-          "type": "operator_identifier",
-          "named": true
-        },
-        {
           "type": "quoted_atom",
           "named": true
         },
@@ -2245,10 +2185,6 @@
           },
           {
             "type": "nil",
-            "named": true
-          },
-          {
-            "type": "operator_identifier",
             "named": true
           },
           {
@@ -2457,10 +2393,6 @@
         },
         {
           "type": "nil",
-          "named": true
-        },
-        {
-          "type": "operator_identifier",
           "named": true
         },
         {
@@ -2692,10 +2624,6 @@
         },
         {
           "type": "nil",
-          "named": true
-        },
-        {
-          "type": "operator_identifier",
           "named": true
         },
         {
@@ -2937,10 +2865,6 @@
           "named": true
         },
         {
-          "type": "operator_identifier",
-          "named": true
-        },
-        {
           "type": "quoted_atom",
           "named": true
         },
@@ -3049,10 +2973,6 @@
           },
           {
             "type": "nil",
-            "named": true
-          },
-          {
-            "type": "operator_identifier",
             "named": true
           },
           {
