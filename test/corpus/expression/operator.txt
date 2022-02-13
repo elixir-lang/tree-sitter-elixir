@@ -668,18 +668,18 @@ range = ..
 ---
 
 (source
-  (nullary_operator)
+  (operator_identifier)
   (call
     (dot
       (alias)
       (identifier))
     (arguments
-      (nullary_operator)))
+      (operator_identifier)))
   (unary_operator
-    (nullary_operator))
+    (operator_identifier))
   (binary_operator
     (identifier)
-    (nullary_operator)))
+    (operator_identifier)))
 
 =====================================
 stepped range

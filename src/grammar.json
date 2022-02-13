@@ -168,8 +168,13 @@
           "name": "map"
         },
         {
-          "type": "SYMBOL",
-          "name": "nullary_operator"
+          "type": "ALIAS",
+          "content": {
+            "type": "STRING",
+            "value": ".."
+          },
+          "named": true,
+          "value": "operator_identifier"
         },
         {
           "type": "SYMBOL",
@@ -2787,10 +2792,6 @@
           ]
         }
       ]
-    },
-    "nullary_operator": {
-      "type": "STRING",
-      "value": ".."
     },
     "unary_operator": {
       "type": "CHOICE",

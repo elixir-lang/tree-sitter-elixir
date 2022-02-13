@@ -213,7 +213,9 @@ module.exports = grammar({
         $.tuple,
         $.bitstring,
         $.map,
-        $.nullary_operator,
+        // If other nullary operators are added, this should be refactored into
+        // a nullary_operator rule:
+        alias("..", $.operator_identifier),
         $.unary_operator,
         $.binary_operator,
         $.dot,
@@ -426,8 +428,6 @@ module.exports = grammar({
           )
         )
       ),
-
-    nullary_operator: ($) => "..",
 
     unary_operator: ($) =>
       choice(
