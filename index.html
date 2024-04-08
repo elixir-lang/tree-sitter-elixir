@@ -60,8 +60,6 @@ IO.puts "Hello, tree-sitter!"</textarea>
           </div>
           <div id="query-container" style="">
             <textarea id="query-input" style="display: none">
-["when" "and" "or" "not" "in" "not in" "fn" "do" "end" "catch" "rescue" "after" "else"] @keyword
-
 [
   (boolean)
   (nil)
@@ -76,18 +74,20 @@ IO.puts "Hello, tree-sitter!"</textarea>
 (char) @constant
 
 [
+  (string)
+  (charlist)
+] @string
+
+[
   (atom)
   (quoted_atom)
   (keyword)
   (quoted_keyword)
 ] @string.special.symbol
 
-[
-  (string)
-  (charlist)
-] @string
+(comment) @comment
 
-(comment) @comment</textarea>
+["when" "and" "or" "not" "in" "not in" "fn" "do" "end" "catch" "rescue" "after" "else"] @keyword</textarea>
           </div>
         </div>
 
