@@ -1,7 +1,7 @@
 let tree;
 
 (async () => {
-  const CAPTURE_REGEX = /@\s*([\w\._-]+)/g;
+  const CAPTURE_REGEX = /@\s*([\w._-]+)/g;
   const COLORS_BY_INDEX = [
     'blue',
     'chocolate',
@@ -17,8 +17,6 @@ let tree;
     'red',
     'sienna',
   ];
-
-  const scriptURL = document.currentScript.getAttribute('src');
 
   const codeInput = document.getElementById('code-input');
   const languageSelect = document.getElementById('language-select');
@@ -84,7 +82,7 @@ let tree;
   async function handleLanguageChange() {
     const newLanguageName = languageSelect.value;
     if (!languagesByName[newLanguageName]) {
-      const url = './tree-sitter-elixir.wasm'
+      const url = `./tree-sitter-elixir.wasm`
       languageSelect.disabled = true;
       try {
         languagesByName[newLanguageName] = await TreeSitter.Language.load(url);
@@ -104,8 +102,8 @@ let tree;
     handleQueryChange();
   }
 
-  async function handleCodeChange(editor, changes) {
-    const newText = codeEditor.getValue() + '\n';
+  async function handleCodeChange(_editor, changes) {
+    const newText = `${codeEditor.getValue()}\n`;
     const edits = tree && changes && changes.map(treeEditForEditorChange);
 
     const start = performance.now();
@@ -130,9 +128,9 @@ let tree;
     isRendering++;
     const cursor = tree.walk();
 
-    let currentRenderCount = parseCount;
+    const currentRenderCount = parseCount;
     let row = '';
-    let rows = [];
+    const rows = [];
     let finishedRow = false;
     let visitedChildren = false;
     let indentLevel = 0;
@@ -177,7 +175,7 @@ let tree;
           const start = cursor.startPosition;
           const end = cursor.endPosition;
           const id = cursor.nodeId;
-          let fieldName = cursor.currentFieldName();
+          let fieldName = cursor.currentFieldName;
           if (fieldName) {
             fieldName += ': ';
           } else {
@@ -321,7 +319,7 @@ let tree;
         start.column > end.column
       )
     ) {
-      let swap = end;
+      const swap = end;
       end = start;
       start = swap;
     }
@@ -423,10 +421,10 @@ let tree;
   }
 
   function loadState() {
-    const language = localStorage.getItem("languageElixir");
-    const sourceCode = localStorage.getItem("sourceCodeElixir");
-    const query = localStorage.getItem("queryElixir");
-    const queryEnabled = localStorage.getItem("queryEnabledElixir");
+    const language = localStorage.getItem("language");
+    const sourceCode = localStorage.getItem("sourceCode");
+    const query = localStorage.getItem("query");
+    const queryEnabled = localStorage.getItem("queryEnabled");
     if (language != null && sourceCode != null && query != null) {
       queryInput.value = query;
       codeInput.value = sourceCode;
@@ -436,25 +434,25 @@ let tree;
   }
 
   function saveState() {
-    localStorage.setItem("languageElixir", languageSelect.value);
-    localStorage.setItem("sourceCodeElixir", codeEditor.getValue());
+    localStorage.setItem("language", languageSelect.value);
+    localStorage.setItem("sourceCode", codeEditor.getValue());
     saveQueryState();
   }
 
   function saveQueryState() {
-    localStorage.setItem("queryEnabledElixir", queryCheckbox.checked);
-    localStorage.setItem("queryElixir", queryEditor.getValue());
+    localStorage.setItem("queryEnabled", queryCheckbox.checked);
+    localStorage.setItem("query", queryEditor.getValue());
   }
 
   function debounce(func, wait, immediate) {
-    var timeout;
+    let timeout;
     return function() {
-      var context = this, args = arguments;
-      var later = function() {
+      const context = this, args = arguments;
+      const later = function() {
         timeout = null;
         if (!immediate) func.apply(context, args);
       };
-      var callNow = immediate && !timeout;
+      const callNow = immediate && !timeout;
       clearTimeout(timeout);
       timeout = setTimeout(later, wait);
       if (callNow) func.apply(context, args);
