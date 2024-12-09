@@ -259,3 +259,26 @@ Resolving some of these conflicts (for instance special keywords like `{}` or `%
 requires the use of external scanner. Given the complexities this approach
 brings to the grammar, and consequently the parser, we stick to the simpler
 approach.
+
+### Ref 8. Empty anonymous function
+
+As opposed to the Elixir parser, we successfully parse anonymous functions with
+no stab clauses, so this is valid:
+
+```
+x = fn
+
+end
+```
+
+This code may appear if an editor extension automatically inserts `end` after
+`fn`. We want it to parse as anonymous function node, so that functionality such
+as indentation works as expected.
+
+If we require at least one stab clause, the above would be parsed with an error,
+where `fn` and `end` are both identifiers. That is not useful. Note that both
+`fn` and `end` are reserved keywords, so there is no case where they would
+actually be identifiers, hence no ambiguity.
+
+Ideally, this would parse it as an anonymous function node with an error, however
+that does not seem straightforward to achieve.
