@@ -829,7 +829,8 @@ module.exports = grammar({
       seq(
         "fn",
         optional($._terminator),
-        sep1($.stab_clause, $._terminator),
+        // See Ref 8. in the docs
+        optional(sep1($.stab_clause, $._terminator)),
         "end"
       ),
 

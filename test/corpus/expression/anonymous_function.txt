@@ -179,6 +179,21 @@ end
         (atom)))))
 
 =====================================
+no clauses
+=====================================
+
+fn
+end
+
+fn end
+
+---
+
+(source
+  (anonymous_function)
+  (anonymous_function))
+
+=====================================
 with guard / no arguments
 =====================================
 
