@@ -24,12 +24,13 @@
     "url": "https://github.com/elixir-lang/tree-sitter-elixir.git"
   },
   "scripts": {
-    "build": "tree-sitter generate --no-bindings",
+    "build": "tree-sitter generate",
     "test": "tree-sitter test",
     "format": "prettier --trailing-comma es5 --write grammar.js && clang-format -i src/scanner.c",
     "format-check": "prettier --trailing-comma es5 --check grammar.js && cat src/scanner.c | clang-format src/scanner.c | diff src/scanner.c -",
     "install": "node-gyp-build",
-    "prebuildify": "prebuildify --napi --strip"
+    "prestart": "tree-sitter build --wasm",
+    "start": "tree-sitter playground"
   },
   "dependencies": {
     "node-addon-api": "^7.1.0",
