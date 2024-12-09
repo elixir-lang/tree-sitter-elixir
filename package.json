@@ -26,8 +26,8 @@
   "scripts": {
     "build": "tree-sitter generate",
     "test": "tree-sitter test",
-    "format": "prettier --trailing-comma es5 --write grammar.js && clang-format -i src/scanner.c",
-    "format-check": "prettier --trailing-comma es5 --check grammar.js && cat src/scanner.c | clang-format src/scanner.c | diff src/scanner.c -",
+    "format": "prettier --write grammar.js && clang-format -i src/scanner.c",
+    "format-check": "prettier --check grammar.js && cat src/scanner.c | clang-format src/scanner.c | diff src/scanner.c -",
     "install": "node-gyp-build",
     "prestart": "tree-sitter build --wasm",
     "start": "tree-sitter playground"
