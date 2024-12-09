@@ -43,14 +43,5 @@
   },
   "peerDependencies": {
     "tree-sitter": "^0.21.0"
-  },
-  "tree-sitter": [
-    {
-      "scope": "source.elixir",
-      "file-types": ["ex", "exs"],
-      "highlights": ["queries/highlights.scm"],
-      "tags": ["queries/tags.scm"],
-      "injection-regex": "^(ex|elixir)$"
-    }
-  ]
+  }
 }
