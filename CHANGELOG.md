@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [v0.3.3](https://github.com/elixir-lang/tree-sitter-elixir/tree/v0.3.3) (2024-12-09)
+
+### Changed
+
+* The parser now accepts anonymous functions with no clauses ([#78](https://github.com/elixir-lang/tree-sitter-elixir/pull/78))
+* Moved parser information to tree-sitter.json ([#79](https://github.com/elixir-lang/tree-sitter-elixir/pull/79))
+
 ## [v0.3.2](https://github.com/elixir-lang/tree-sitter-elixir/tree/v0.3.2) (2024-12-02)
 
 ### Added
