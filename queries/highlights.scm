@@ -48,7 +48,7 @@
 ; * special
 (
   (identifier) @constant.builtin
-  (#match? @constant.builtin "^(__MODULE__|__DIR__|__ENV__|__CALLER__|__STACKTRACE__)$")
+  (#any-of? @constant.builtin "__MODULE__" "__DIR__" "__ENV__" "__CALLER__" "__STACKTRACE__")
 )
 
 ; Comment
@@ -122,12 +122,12 @@
 ; * definition keyword
 (call
   target: (identifier) @keyword
-  (#match? @keyword "^(def|defdelegate|defexception|defguard|defguardp|defimpl|defmacro|defmacrop|defmodule|defn|defnp|defoverridable|defp|defprotocol|defstruct)$"))
+  (#any-of? @keyword "def" "defdelegate" "defexception" "defguard" "defguardp" "defimpl" "defmacro" "defmacrop" "defmodule" "defn" "defnp" "defoverridable" "defp" "defprotocol" "defstruct"))
 
 ; * kernel or special forms keyword
 (call
   target: (identifier) @keyword
-  (#match? @keyword "^(alias|case|cond|for|if|import|quote|raise|receive|require|reraise|super|throw|try|unless|unquote|unquote_splicing|use|with)$"))
+  (#any-of? @keyword "alias" "case" "cond" "for" "if" "import" "quote" "raise" "receive" "require" "reraise" "super" "throw" "try" "unless" "unquote" "unquote_splicing" "use" "with"))
 
 ; * just identifier in function definition
 (call
@@ -139,7 +139,7 @@
         left: (identifier) @function
         operator: "when")
     ])
-  (#match? @keyword "^(def|defdelegate|defguard|defguardp|defmacro|defmacrop|defn|defnp|defp)$"))
+  (#any-of? @keyword "def" "defdelegate" "defguard" "defguardp" "defmacro" "defmacrop" "defn" "defnp" "defp"))
 
 ; * pipe into identifier (function call)
 (binary_operator
@@ -153,7 +153,7 @@
     (binary_operator
       operator: "|>"
       right: (identifier) @variable))
-  (#match? @keyword "^(def|defdelegate|defguard|defguardp|defmacro|defmacrop|defn|defnp|defp)$"))
+  (#any-of? @keyword "def" "defdelegate" "defguard" "defguardp" "defmacro" "defmacrop" "defn" "defnp" "defp"))
 
 ; * pipe into field without parentheses (function call)
 (binary_operator
@@ -208,7 +208,7 @@
           quoted_end: _ @comment.doc) @comment.doc
         (boolean) @comment.doc
       ]))
-  (#match? @comment.doc.__attribute__ "^(moduledoc|typedoc|doc)$"))
+  (#any-of? @comment.doc.__attribute__ "moduledoc" "typedoc" "doc"))
 
 ; Module
 
