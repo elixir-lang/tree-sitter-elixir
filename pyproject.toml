@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "tree-sitter-elixir"
 description = "Elixir grammar for tree-sitter"
-version = "0.0.1"
+version = "0.3.3"
 keywords = ["incremental", "parsing", "tree-sitter", "elixir"]
 classifiers = [
   "Intended Audience :: Developers",
@@ -19,7 +19,7 @@ license.text = "MIT"
 readme = "README.md"
 
 [project.urls]
-Homepage = "https://github.com/tree-sitter/tree-sitter-elixir"
+Homepage = "https://github.com/elixir-lang/tree-sitter-elixir"
 
 [project.optional-dependencies]
 core = ["tree-sitter~=0.23"]
