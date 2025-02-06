@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "tree-sitter-elixir"
 description = "Elixir grammar for tree-sitter"
-version = "0.3.3"
+version = "0.3.4"
 keywords = ["incremental", "parsing", "tree-sitter", "elixir"]
 classifiers = [
   "Intended Audience :: Developers",

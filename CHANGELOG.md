@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [v0.3.4](https://github.com/elixir-lang/tree-sitter-elixir/tree/v0.3.4) (2025-02-06)
+
+### Changed
+
+* Changed the built-in queries to use `#any-of?` predicate over `#match?` ([#80](https://github.com/elixir-lang/tree-sitter-elixir/pull/80))
+
 ## [v0.3.3](https://github.com/elixir-lang/tree-sitter-elixir/tree/v0.3.3) (2024-12-09)
 
 ### Changed

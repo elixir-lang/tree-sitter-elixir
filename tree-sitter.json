@@ -12,7 +12,7 @@
     }
   ],
   "metadata": {
-    "version": "0.3.3",
+    "version": "0.3.4",
     "license": "Apache-2.0",
     "description": "Elixir grammar for the tree-sitter parsing library",
     "authors": [
