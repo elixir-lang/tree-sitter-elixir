@@ -14,8 +14,8 @@ classifiers = [
   "Topic :: Text Processing :: Linguistic",
   "Typing :: Typed"
 ]
-requires-python = ">=3.8"
-license.text = "MIT"
+requires-python = ">=3.9"
+license.text = "Apache-2.0"
 readme = "README.md"
 
 [project.urls]
@@ -25,5 +25,5 @@ Homepage = "https://github.com/elixir-lang/tree-sitter-elixir"
 core = ["tree-sitter~=0.23"]
 
 [tool.cibuildwheel]
-build = "cp38-*"
+build = "cp39-*"
 build-frontend = "build"
