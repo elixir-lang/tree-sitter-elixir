@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [Unreleased](https://github.com/elixir-lang/tree-sitter-elixir/tree/main)
+
+### Added
+
+* Support for ~SQL sigils in the built-in injections ([#84](https://github.com/elixir-lang/tree-sitter-elixir/pull/84))
+
 ## [v0.3.4](https://github.com/elixir-lang/tree-sitter-elixir/tree/v0.3.4) (2025-02-06)
 
 ### Changed
