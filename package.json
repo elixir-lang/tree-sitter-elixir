@@ -16,7 +16,8 @@
     "prebuilds/**",
     "bindings/node/*",
     "queries/*",
-    "src/**"
+    "src/**",
+    "*.wasm"
   ],
   "license": "Apache-2.0",
   "repository": {
@@ -29,6 +30,7 @@
     "format": "prettier --write grammar.js && clang-format -i src/scanner.c",
     "format-check": "prettier --check grammar.js && cat src/scanner.c | clang-format src/scanner.c | diff src/scanner.c -",
     "install": "node-gyp-build",
+    "prepack": "tree-sitter build --wasm",
     "prestart": "tree-sitter build --wasm",
     "start": "tree-sitter playground"
   },
