@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.13)
 
 project(tree-sitter-elixir
-        VERSION "0.3.4"
+        VERSION "0.3.5"
         DESCRIPTION "Elixir grammar for the tree-sitter parsing library"
         HOMEPAGE_URL "https://github.com/elixir-lang/tree-sitter-elixir"
         LANGUAGES C)

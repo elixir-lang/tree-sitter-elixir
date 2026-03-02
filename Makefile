@@ -4,7 +4,7 @@ endif
 
 LANGUAGE_NAME := tree-sitter-elixir
 HOMEPAGE_URL := https://github.com/elixir-lang/tree-sitter-elixir
-VERSION := 0.3.4
+VERSION := 0.3.5
 
 # repository
 SRC_DIR := src
