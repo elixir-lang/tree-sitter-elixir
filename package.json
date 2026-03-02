@@ -16,7 +16,8 @@
     "prebuilds/**",
     "bindings/node/*",
     "queries/*",
-    "src/**"
+    "src/**",
+    "*.wasm"
   ],
   "license": "Apache-2.0",
   "repository": {
