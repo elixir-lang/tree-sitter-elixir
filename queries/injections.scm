@@ -38,6 +38,14 @@
  (#set! injection.language "python")
  (#set! injection.combined))
 
+; Bash
+((sigil
+  (sigil_name) @_sigil_name
+  (quoted_content) @injection.content)
+ (#any-of? @_sigil_name "b" "BASH")
+ (#set! injection.language "bash")
+ (#set! injection.combined))
+
 ; JavaScript
 ((sigil
   (sigil_name) @_sigil_name
