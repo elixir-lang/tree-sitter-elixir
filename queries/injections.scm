@@ -42,7 +42,7 @@
 ((sigil
   (sigil_name) @_sigil_name
   (quoted_content) @injection.content)
- (#any-of? @_sigil_name "b" "BASH")
+ (#eq? @_sigil_name "BASH")
  (#set! injection.language "bash")
  (#set! injection.combined))
 
