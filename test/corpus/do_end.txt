@@ -71,6 +71,25 @@ end
       (identifier))))
 
 =====================================
+anonymous call
+=====================================
+
+fun.(a) do
+  b
+end
+
+---
+
+(source
+  (call
+    (dot
+      (identifier))
+    (arguments
+      (identifier))
+    (do_block
+      (identifier))))
+
+=====================================
 sticks to the outermost call
 =====================================
 

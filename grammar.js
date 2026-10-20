@@ -631,9 +631,12 @@ module.exports = grammar({
       ),
 
     _anonymous_call: ($) =>
-      seq(
-        field("target", alias($._anonymous_dot, $.dot)),
-        alias($._call_arguments_with_parentheses, $.arguments),
+      prec.left(
+        seq(
+          field("target", alias($._anonymous_dot, $.dot)),
+          alias($._call_arguments_with_parentheses, $.arguments),
+          optional(seq(optional($._newline_before_do), $.do_block)),
+        ),
       ),
 
     _anonymous_dot: ($) =>
