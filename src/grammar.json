@@ -5143,31 +5143,64 @@
       }
     },
     "_anonymous_call": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "FIELD",
-          "name": "target",
-          "content": {
+      "type": "PREC_LEFT",
+      "value": 0,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "FIELD",
+            "name": "target",
+            "content": {
+              "type": "ALIAS",
+              "content": {
+                "type": "SYMBOL",
+                "name": "_anonymous_dot"
+              },
+              "named": true,
+              "value": "dot"
+            }
+          },
+          {
             "type": "ALIAS",
             "content": {
               "type": "SYMBOL",
-              "name": "_anonymous_dot"
+              "name": "_call_arguments_with_parentheses"
             },
             "named": true,
-            "value": "dot"
-          }
-        },
-        {
-          "type": "ALIAS",
-          "content": {
-            "type": "SYMBOL",
-            "name": "_call_arguments_with_parentheses"
+            "value": "arguments"
           },
-          "named": true,
-          "value": "arguments"
-        }
-      ]
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SEQ",
+                "members": [
+                  {
+                    "type": "CHOICE",
+                    "members": [
+                      {
+                        "type": "SYMBOL",
+                        "name": "_newline_before_do"
+                      },
+                      {
+                        "type": "BLANK"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "do_block"
+                  }
+                ]
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          }
+        ]
+      }
     },
     "_anonymous_dot": {
       "type": "PREC",
