@@ -31,7 +31,12 @@ enum TokenType {
 
   NOT_IN,
 
-  QUOTED_ATOM_START
+  QUOTED_ATOM_START,
+
+  IN,
+  AND,
+  OR,
+  WHEN
 };
 
 static inline void advance(TSLexer *lexer) { lexer->advance(lexer, false); }
@@ -526,6 +531,19 @@ static bool scan_newline(TSLexer *lexer, const bool *valid_symbols) {
   return false;
 }
 
+// A word operator in binary position, which must end where the word
+// ends: `invalid` is no `in` followed by `valid`
+static bool scan_word_operator(TSLexer *lexer, const char *word) {
+  for (const char *c = word; *c != '\0'; c++) {
+    if (lexer->lookahead != *c) {
+      return false;
+    }
+    advance(lexer);
+  }
+  lexer->mark_end(lexer);
+  return is_token_end(lexer->lookahead) && check_operator_end(lexer);
+}
+
 static bool scan(TSLexer *lexer, const bool *valid_symbols) {
   int8_t quoted_content_info_idx = find_quoted_token_info(valid_symbols);
 
@@ -603,6 +621,30 @@ static bool scan(TSLexer *lexer, const bool *valid_symbols) {
           }
         }
       }
+    }
+    // in
+  } else if (lexer->lookahead == 'i') {
+    if (valid_symbols[IN]) {
+      lexer->result_symbol = IN;
+      return scan_word_operator(lexer, "in");
+    }
+    // and
+  } else if (lexer->lookahead == 'a') {
+    if (valid_symbols[AND]) {
+      lexer->result_symbol = AND;
+      return scan_word_operator(lexer, "and");
+    }
+    // or
+  } else if (lexer->lookahead == 'o') {
+    if (valid_symbols[OR]) {
+      lexer->result_symbol = OR;
+      return scan_word_operator(lexer, "or");
+    }
+    // when
+  } else if (lexer->lookahead == 'w') {
+    if (valid_symbols[WHEN]) {
+      lexer->result_symbol = WHEN;
+      return scan_word_operator(lexer, "when");
     }
     // quoted atom start
   } else if (lexer->lookahead == ':') {

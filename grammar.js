@@ -130,6 +130,12 @@ module.exports = grammar({
 
     // See Ref 5. in the docs
     $._quoted_atom_start,
+
+    // See Ref 9. in the docs
+    $._in,
+    $._and,
+    $._or,
+    $._when,
   ],
 
   extras: ($) => [
@@ -458,7 +464,7 @@ module.exports = grammar({
           $,
           prec.right,
           PREC.WHEN_OP,
-          "when",
+          alias($._when, "when"),
           $._expression,
           choice($._expression, $.keywords),
         ),
@@ -473,8 +479,18 @@ module.exports = grammar({
         ),
         binaryOp($, prec.right, PREC.ASSOC_OP, "=>"),
         binaryOp($, prec.right, PREC.MATCH_OP, "="),
-        binaryOp($, prec.left, PREC.OR_OPS, choice(...OR_OPS)),
-        binaryOp($, prec.left, PREC.AND_OPS, choice(...AND_OPS)),
+        binaryOp(
+          $,
+          prec.left,
+          PREC.OR_OPS,
+          choice("||", "|||", alias($._or, "or")),
+        ),
+        binaryOp(
+          $,
+          prec.left,
+          PREC.AND_OPS,
+          choice("&&", "&&&", alias($._and, "and")),
+        ),
         binaryOp($, prec.left, PREC.COMP_OPS, choice(...COMP_OPS)),
         binaryOp($, prec.left, PREC.REL_OPS, choice(...REL_OPS)),
         binaryOp($, prec.left, PREC.ARROW_OPS, choice(...ARROW_OPS)),
@@ -482,7 +498,7 @@ module.exports = grammar({
           $,
           prec.left,
           PREC.IN_OPS,
-          choice("in", alias($._not_in, "not in")),
+          choice(alias($._in, "in"), alias($._not_in, "not in")),
         ),
         binaryOp($, prec.left, PREC.XOR_OP, "^^^"),
         binaryOp($, prec.right, PREC.TERNARY_OP, "//"),
@@ -797,7 +813,7 @@ module.exports = grammar({
           "left",
           alias($._stab_clause_arguments_with_parentheses, $.arguments),
         ),
-        field("operator", "when"),
+        field("operator", alias($._when, "when")),
         field("right", $._expression),
       ),
 
@@ -813,7 +829,7 @@ module.exports = grammar({
             "left",
             alias($._stab_clause_arguments_without_parentheses, $.arguments),
           ),
-          field("operator", "when"),
+          field("operator", alias($._when, "when")),
           field("right", $._expression),
         ),
       ),

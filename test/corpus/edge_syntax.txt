@@ -116,3 +116,151 @@ def Mod.fun(x), do: 1
         (pair
           (keyword)
           (integer))))))
+
+=====================================
+clause pattern starting with a word operator after a map update
+=====================================
+
+case x do
+  a ->
+    f(s)
+    %{s | id: 1}
+
+  invalid ->
+    d
+end
+
+case x do
+  a ->
+    f(s)
+    %{s | id: 1}
+
+  android ->
+    d
+end
+
+case x do
+  a ->
+    f(s)
+    %{s | id: 1}
+
+  order ->
+    d
+end
+
+case x do
+  a ->
+    f(s)
+    %{s | id: 1}
+
+  whenever ->
+    d
+end
+
+---
+
+(source
+  (call
+    (identifier)
+    (arguments
+      (identifier))
+    (do_block
+      (stab_clause
+        (arguments
+          (identifier))
+        (body
+          (call
+            (identifier)
+            (arguments
+              (identifier)))
+          (map
+            (map_content
+              (binary_operator
+                (identifier)
+                (keywords
+                  (pair
+                    (keyword)
+                    (integer))))))))
+      (stab_clause
+        (arguments
+          (identifier))
+        (body
+          (identifier)))))
+  (call
+    (identifier)
+    (arguments
+      (identifier))
+    (do_block
+      (stab_clause
+        (arguments
+          (identifier))
+        (body
+          (call
+            (identifier)
+            (arguments
+              (identifier)))
+          (map
+            (map_content
+              (binary_operator
+                (identifier)
+                (keywords
+                  (pair
+                    (keyword)
+                    (integer))))))))
+      (stab_clause
+        (arguments
+          (identifier))
+        (body
+          (identifier)))))
+  (call
+    (identifier)
+    (arguments
+      (identifier))
+    (do_block
+      (stab_clause
+        (arguments
+          (identifier))
+        (body
+          (call
+            (identifier)
+            (arguments
+              (identifier)))
+          (map
+            (map_content
+              (binary_operator
+                (identifier)
+                (keywords
+                  (pair
+                    (keyword)
+                    (integer))))))))
+      (stab_clause
+        (arguments
+          (identifier))
+        (body
+          (identifier)))))
+  (call
+    (identifier)
+    (arguments
+      (identifier))
+    (do_block
+      (stab_clause
+        (arguments
+          (identifier))
+        (body
+          (call
+            (identifier)
+            (arguments
+              (identifier)))
+          (map
+            (map_content
+              (binary_operator
+                (identifier)
+                (keywords
+                  (pair
+                    (keyword)
+                    (integer))))))))
+      (stab_clause
+        (arguments
+          (identifier))
+        (body
+          (identifier))))))
