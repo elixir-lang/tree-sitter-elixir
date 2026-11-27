@@ -26,6 +26,18 @@ not arg
   (unary_operator (identifier)))
 
 =====================================
+binary word operator after an escaped newline
+=====================================
+
+1 \
+  in []
+
+---
+
+(source
+  (binary_operator (integer) (list)))
+
+=====================================
 binary left associative
 =====================================
 

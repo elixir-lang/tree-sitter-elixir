@@ -3650,12 +3650,7 @@
                 "type": "FIELD",
                 "name": "operator",
                 "content": {
-                  "type": "ALIAS",
-                  "content": {
-                    "type": "SYMBOL",
-                    "name": "_when"
-                  },
-                  "named": false,
+                  "type": "STRING",
                   "value": "when"
                 }
               },
@@ -3849,12 +3844,7 @@
                       "value": "|||"
                     },
                     {
-                      "type": "ALIAS",
-                      "content": {
-                        "type": "SYMBOL",
-                        "name": "_or"
-                      },
-                      "named": false,
+                      "type": "STRING",
                       "value": "or"
                     }
                   ]
@@ -3900,12 +3890,7 @@
                       "value": "&&&"
                     },
                     {
-                      "type": "ALIAS",
-                      "content": {
-                        "type": "SYMBOL",
-                        "name": "_and"
-                      },
-                      "named": false,
+                      "type": "STRING",
                       "value": "and"
                     }
                   ]
@@ -4117,12 +4102,7 @@
                   "type": "CHOICE",
                   "members": [
                     {
-                      "type": "ALIAS",
-                      "content": {
-                        "type": "SYMBOL",
-                        "name": "_in"
-                      },
-                      "named": false,
+                      "type": "STRING",
                       "value": "in"
                     },
                     {
@@ -6460,12 +6440,7 @@
           "type": "FIELD",
           "name": "operator",
           "content": {
-            "type": "ALIAS",
-            "content": {
-              "type": "SYMBOL",
-              "name": "_when"
-            },
-            "named": false,
+            "type": "STRING",
             "value": "when"
           }
         },
@@ -6502,12 +6477,7 @@
             "type": "FIELD",
             "name": "operator",
             "content": {
-              "type": "ALIAS",
-              "content": {
-                "type": "SYMBOL",
-                "name": "_when"
-              },
-              "named": false,
+              "type": "STRING",
               "value": "when"
             }
           },
@@ -6816,22 +6786,6 @@
     {
       "type": "SYMBOL",
       "name": "_quoted_atom_start"
-    },
-    {
-      "type": "SYMBOL",
-      "name": "_in"
-    },
-    {
-      "type": "SYMBOL",
-      "name": "_and"
-    },
-    {
-      "type": "SYMBOL",
-      "name": "_or"
-    },
-    {
-      "type": "SYMBOL",
-      "name": "_when"
     }
   ],
   "inline": [],

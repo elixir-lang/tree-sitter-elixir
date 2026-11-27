@@ -283,15 +283,12 @@ actually be identifiers, hence no ambiguity.
 Ideally, this would parse it as an anonymous function node with an error, however
 that does not seem straightforward to achieve.
 
-### Ref 9. External scanner for word binary operators
+### Ref 9. Word boundaries after binary operators
 
-The binary operators `in`, `and`, `or` and `when` are words, so the token must end
-where the word ends. After an expression, in a state where an identifier is not a
-valid token, the internal lexer has no longer match to prefer and accepts the
-literal `in` at the start of `invalid`, which may then parse as `expr in valid`.
+After an expression, the lexer can match `in` at the start of `invalid` if the
+parse state only allows an operator. This can turn a clause pattern into the
+right operand of the expression on the previous line.
 
-Keyword extraction would solve this, but it causes problems in our case (see Ref 4.).
-Instead, these operators are tokenized by the external scanner in binary position,
-checking that the word ends there, the same way `not in` and the newline before a
-binary operator are. The literal words stay in the rules where an identifier is also
-valid (such as operator identifiers), since there the longest match wins.
+The grammar requires `_word_end` after the binary operators `in`, `and`, `or`
+and `when`. The external scanner checks the next character without consuming
+it. In `invalid`, the check fails at `v`, so the operator parse fails.
