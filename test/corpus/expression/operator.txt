@@ -26,6 +26,50 @@ not arg
   (unary_operator (identifier)))
 
 =====================================
+binary word operators after an escaped newline
+=====================================
+
+1 \
+  in []
+
+1 \
+  not in []
+
+---
+
+(source
+  (binary_operator (integer) (list))
+  (binary_operator (integer) (list)))
+
+=====================================
+space before an escaped newline makes -x a call argument
+=====================================
+
+f -x
+f \
+  -x
+
+---
+
+(source
+  (call (identifier) (arguments (unary_operator (identifier))))
+  (call (identifier) (arguments (unary_operator (identifier)))))
+
+=====================================
+no space before an escaped newline makes minus binary
+=====================================
+
+f-x
+f\
+  -x
+
+---
+
+(source
+  (binary_operator (identifier) (identifier))
+  (binary_operator (identifier) (identifier)))
+
+=====================================
 binary left associative
 =====================================
 

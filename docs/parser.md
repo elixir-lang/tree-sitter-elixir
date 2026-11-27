@@ -282,3 +282,13 @@ actually be identifiers, hence no ambiguity.
 
 Ideally, this would parse it as an anonymous function node with an error, however
 that does not seem straightforward to achieve.
+
+### Ref 9. Word boundaries after binary operators
+
+After an expression, the lexer can match `in` at the start of `invalid` if the
+parse state only allows an operator. This can turn a clause pattern into the
+right operand of the expression on the previous line.
+
+The external scanner matches `in`, `and`, `or` and `when` in binary operator
+position. It checks the word boundary before it returns the operator token.
+In `invalid`, the check fails at `v`, so the parser can read the whole identifier.

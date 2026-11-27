@@ -63,6 +63,18 @@ quoted atom
     (escape_sequence)))
 
 =====================================
+[error] quoted atom after an invalid character
+=====================================
+
+$ :"ok"
+
+---
+
+(source
+  (ERROR (UNEXPECTED '$'))
+  (quoted_atom (quoted_content)))
+
+=====================================
 interpolation
 =====================================
 
