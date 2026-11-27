@@ -289,6 +289,6 @@ After an expression, the lexer can match `in` at the start of `invalid` if the
 parse state only allows an operator. This can turn a clause pattern into the
 right operand of the expression on the previous line.
 
-The grammar requires `_word_end` after the binary operators `in`, `and`, `or`
-and `when`. The external scanner checks the next character without consuming
-it. In `invalid`, the check fails at `v`, so the operator parse fails.
+The external scanner matches `in`, `and`, `or` and `when` in binary operator
+position. It checks the word boundary before it returns the operator token.
+In `invalid`, the check fails at `v`, so the parser can read the whole identifier.

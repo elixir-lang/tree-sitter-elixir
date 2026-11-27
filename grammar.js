@@ -132,9 +132,10 @@ module.exports = grammar({
     $._quoted_atom_start,
 
     // See Ref 9. in the docs
-    $._word_end,
-
-    $._error_sentinel,
+    $._in,
+    $._and,
+    $._or,
+    $._when,
   ],
 
   extras: ($) => [
@@ -458,45 +459,60 @@ module.exports = grammar({
 
     binary_operator: ($) =>
       choice(
-        binaryOp($, prec.left, PREC.IN_MATCH_OPS, IN_MATCH_OPS),
+        binaryOp($, prec.left, PREC.IN_MATCH_OPS, choice(...IN_MATCH_OPS)),
         binaryOp(
           $,
           prec.right,
           PREC.WHEN_OP,
-          ["when"],
+          alias($._when, "when"),
           $._expression,
           choice($._expression, $.keywords),
         ),
-        binaryOp($, prec.right, PREC.TYPE_OP, ["::"]),
+        binaryOp($, prec.right, PREC.TYPE_OP, "::"),
         binaryOp(
           $,
           prec.right,
           PREC.BAR_OP,
-          ["|"],
+          "|",
           $._expression,
           choice($._expression, $.keywords),
         ),
-        binaryOp($, prec.right, PREC.ASSOC_OP, ["=>"]),
-        binaryOp($, prec.right, PREC.MATCH_OP, ["="]),
-        binaryOp($, prec.left, PREC.OR_OPS, OR_OPS),
-        binaryOp($, prec.left, PREC.AND_OPS, AND_OPS),
-        binaryOp($, prec.left, PREC.COMP_OPS, COMP_OPS),
-        binaryOp($, prec.left, PREC.REL_OPS, REL_OPS),
-        binaryOp($, prec.left, PREC.ARROW_OPS, ARROW_OPS),
-        binaryOp($, prec.left, PREC.IN_OPS, ["in", alias($._not_in, "not in")]),
-        binaryOp($, prec.left, PREC.XOR_OP, ["^^^"]),
-        binaryOp($, prec.right, PREC.TERNARY_OP, ["//"]),
-        binaryOp($, prec.right, PREC.CONCAT_OPS, CONCAT_OPS),
-        binaryOp($, prec.right, PREC.RANGE_OP, [".."]),
-        binaryOp($, prec.left, PREC.ADD_OPS, ADD_OPS),
-        binaryOp($, prec.left, PREC.MULT_OPS, MULT_OPS),
-        binaryOp($, prec.left, PREC.POWER_OP, ["**"]),
+        binaryOp($, prec.right, PREC.ASSOC_OP, "=>"),
+        binaryOp($, prec.right, PREC.MATCH_OP, "="),
+        binaryOp(
+          $,
+          prec.left,
+          PREC.OR_OPS,
+          choice("||", "|||", alias($._or, "or")),
+        ),
+        binaryOp(
+          $,
+          prec.left,
+          PREC.AND_OPS,
+          choice("&&", "&&&", alias($._and, "and")),
+        ),
+        binaryOp($, prec.left, PREC.COMP_OPS, choice(...COMP_OPS)),
+        binaryOp($, prec.left, PREC.REL_OPS, choice(...REL_OPS)),
+        binaryOp($, prec.left, PREC.ARROW_OPS, choice(...ARROW_OPS)),
+        binaryOp(
+          $,
+          prec.left,
+          PREC.IN_OPS,
+          choice(alias($._in, "in"), alias($._not_in, "not in")),
+        ),
+        binaryOp($, prec.left, PREC.XOR_OP, "^^^"),
+        binaryOp($, prec.right, PREC.TERNARY_OP, "//"),
+        binaryOp($, prec.right, PREC.CONCAT_OPS, choice(...CONCAT_OPS)),
+        binaryOp($, prec.right, PREC.RANGE_OP, ".."),
+        binaryOp($, prec.left, PREC.ADD_OPS, choice(...ADD_OPS)),
+        binaryOp($, prec.left, PREC.MULT_OPS, choice(...MULT_OPS)),
+        binaryOp($, prec.left, PREC.POWER_OP, "**"),
         // Operator with arity
         binaryOp(
           $,
           prec.left,
           PREC.MULT_OPS,
-          ["/"],
+          "/",
           $.operator_identifier,
           $.integer,
         ),
@@ -797,7 +813,7 @@ module.exports = grammar({
           "left",
           alias($._stab_clause_arguments_with_parentheses, $.arguments),
         ),
-        binaryOperatorField($, "when"),
+        field("operator", alias($._when, "when")),
         field("right", $._expression),
       ),
 
@@ -813,7 +829,7 @@ module.exports = grammar({
             "left",
             alias($._stab_clause_arguments_without_parentheses, $.arguments),
           ),
-          binaryOperatorField($, "when"),
+          field("operator", alias($._when, "when")),
           field("right", $._expression),
         ),
       ),
@@ -865,18 +881,12 @@ function unaryOp($, assoc, precedence, operator, right = null) {
   );
 }
 
-function binaryOperatorField($, operator) {
-  const value = field("operator", operator);
-  const isWord = typeof operator === "string" && /^[a-z]+$/.test(operator);
-  return isWord ? seq(value, $._word_end) : value;
-}
-
-function binaryOp($, assoc, precedence, operators, left = null, right = null) {
+function binaryOp($, assoc, precedence, operator, left = null, right = null) {
   return assoc(
     precedence,
     seq(
       field("left", left || $._expression),
-      choice(...operators.map((operator) => binaryOperatorField($, operator))),
+      field("operator", operator),
       field("right", right || $._expression),
     ),
   );

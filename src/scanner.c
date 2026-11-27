@@ -32,9 +32,11 @@ enum TokenType {
   NOT_IN,
 
   QUOTED_ATOM_START,
-  WORD_END,
 
-  ERROR_SENTINEL
+  IN,
+  AND,
+  OR,
+  WHEN
 };
 
 static inline void advance(TSLexer *lexer) { lexer->advance(lexer, false); }
@@ -151,6 +153,15 @@ const uint8_t quoted_content_infos_length =
     sizeof(quoted_content_infos) / sizeof(QuotedContentInfo);
 
 static inline int8_t find_quoted_token_info(const bool *valid_symbols) {
+  // Quoted tokens are mutually exclusive and only one should be valid
+  // at a time. If multiple are valid it means we parse an arbitrary
+  // code outside quotes, in which case we don't want to tokenize it as
+  // quoted content.
+  if (valid_symbols[QUOTED_CONTENT_I_SINGLE] &&
+      valid_symbols[QUOTED_CONTENT_I_DOUBLE]) {
+    return -1;
+  }
+
   for (uint8_t i = 0; i < quoted_content_infos_length; i++) {
     if (valid_symbols[quoted_content_infos[i].token_type]) {
       return i;
@@ -520,29 +531,42 @@ static bool scan_newline(TSLexer *lexer, const bool *valid_symbols) {
   return false;
 }
 
-static bool scan(TSLexer *lexer, const bool *valid_symbols) {
-  // During error recovery, Tree-sitter marks all tokens as valid, including
-  // the unused sentinel. Skip the checks below because they rely on the parser
-  // to tell us which tokens are expected here.
-  if (!valid_symbols[ERROR_SENTINEL]) {
-    int8_t quoted_content_info_idx = find_quoted_token_info(valid_symbols);
-    if (quoted_content_info_idx != -1) {
-      const QuotedContentInfo info =
-          quoted_content_infos[quoted_content_info_idx];
-      return scan_quoted_content(lexer, &info);
+// Require a word boundary so `in` cannot match the start of `invalid`.
+static bool scan_word_operator(TSLexer *lexer, const char *word) {
+  for (const char *c = word; *c != '\0'; c++) {
+    if (lexer->lookahead != *c) {
+      return false;
     }
+    advance(lexer);
+  }
+  lexer->mark_end(lexer);
+  return is_token_end(lexer->lookahead) && check_operator_end(lexer);
+}
 
-    if (valid_symbols[WORD_END] &&
-        (is_token_end(lexer->lookahead) || lexer->eof(lexer))) {
-      lexer->result_symbol = WORD_END;
-      return true;
-    }
+static bool scan(TSLexer *lexer, const bool *valid_symbols) {
+  int8_t quoted_content_info_idx = find_quoted_token_info(valid_symbols);
+
+  // Quoted content, which matches any character except for close
+  // delimiters, escapes and interpolations
+  if (quoted_content_info_idx != -1) {
+    const QuotedContentInfo info =
+        quoted_content_infos[quoted_content_info_idx];
+    return scan_quoted_content(lexer, &info);
   }
 
-  bool skipped_whitespace = false;
+  bool starts_with_inline_whitespace = is_inline_whitespace(lexer->lookahead);
 
-  while (is_inline_whitespace(lexer->lookahead)) {
-    skipped_whitespace = true;
+  // Skip escaped newlines so we can scan the next line for external tokens.
+  while (is_inline_whitespace(lexer->lookahead) || lexer->lookahead == '\\') {
+    if (lexer->lookahead == '\\') {
+      skip(lexer);
+      if (lexer->lookahead == '\r') {
+        skip(lexer);
+      }
+      if (lexer->lookahead != '\n') {
+        return false;
+      }
+    }
     skip(lexer);
   }
 
@@ -556,7 +580,7 @@ static bool scan(TSLexer *lexer, const bool *valid_symbols) {
 
   // before unary +
   if (lexer->lookahead == '+') {
-    if (skipped_whitespace && valid_symbols[BEFORE_UNARY_OPERATOR]) {
+    if (starts_with_inline_whitespace && valid_symbols[BEFORE_UNARY_OPERATOR]) {
       lexer->mark_end(lexer);
       advance(lexer);
       if (lexer->lookahead == '+' || lexer->lookahead == ':' ||
@@ -571,7 +595,7 @@ static bool scan(TSLexer *lexer, const bool *valid_symbols) {
     }
     // before unary -
   } else if (lexer->lookahead == '-') {
-    if (skipped_whitespace && valid_symbols[BEFORE_UNARY_OPERATOR]) {
+    if (starts_with_inline_whitespace && valid_symbols[BEFORE_UNARY_OPERATOR]) {
       lexer->mark_end(lexer);
       lexer->result_symbol = BEFORE_UNARY_OPERATOR;
       advance(lexer);
@@ -605,6 +629,30 @@ static bool scan(TSLexer *lexer, const bool *valid_symbols) {
           }
         }
       }
+    }
+    // in
+  } else if (lexer->lookahead == 'i') {
+    if (valid_symbols[IN]) {
+      lexer->result_symbol = IN;
+      return scan_word_operator(lexer, "in");
+    }
+    // and
+  } else if (lexer->lookahead == 'a') {
+    if (valid_symbols[AND]) {
+      lexer->result_symbol = AND;
+      return scan_word_operator(lexer, "and");
+    }
+    // or
+  } else if (lexer->lookahead == 'o') {
+    if (valid_symbols[OR]) {
+      lexer->result_symbol = OR;
+      return scan_word_operator(lexer, "or");
+    }
+    // when
+  } else if (lexer->lookahead == 'w') {
+    if (valid_symbols[WHEN]) {
+      lexer->result_symbol = WHEN;
+      return scan_word_operator(lexer, "when");
     }
     // quoted atom start
   } else if (lexer->lookahead == ':') {
